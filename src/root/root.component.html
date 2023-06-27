@@ -8,7 +8,7 @@
 
 <app-ricerca *ngIf="view =='ricerca'" (sezioneEvent) = "cambiaSez($event)" (sezioneEvent) = "handleCleanEvent($event)">
 </app-ricerca>
-<app-inserimento *ngIf="view=='inserimento'">
+<app-inserimento *ngIf="view=='inserimento'" (sezioneEvent) = "handleCleanEvent($event)">
 </app-inserimento>
 
 

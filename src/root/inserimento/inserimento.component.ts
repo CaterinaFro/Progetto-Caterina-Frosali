@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-inserimento',
@@ -7,10 +7,15 @@ import { Component, OnInit } from '@angular/core';
   standalone: true
 })
 export class InserimentoComponent implements OnInit {
+  @Output() sezioneEvent = new EventEmitter<boolean>();
 
   constructor() { }
 
   ngOnInit() {
+  }
+
+  clean() {
+    this.sezioneEvent.emit(true);
   }
 
 }
