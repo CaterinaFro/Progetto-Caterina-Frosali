@@ -1,0 +1,18 @@
+<h3>
+  BIBLIOTECA
+</h3>
+<div *ngIf="sez">
+  <button (click)="ricerca()">Ricerca</button>
+  <button (click)="inserimento()">Inserimento</button>
+ 
+  </div>
+  <app-ricerca *ngIf="view=='ricerca'" (sezioneEvent) = "cambiaSez($event)">
+   
+  </app-ricerca>
+  <app-inserimento *ngIf="view=='inserimento'">
+  </app-inserimento>
+
+
+
+
+
