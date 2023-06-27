@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 
 @Component({
   selector: 'app-ricerca',
@@ -8,6 +8,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 })
 export class RicercaComponent implements OnInit {
   @Output() sezioneEvent = new EventEmitter<boolean>();
+  //@Output() cleanEvent: EventEmitter<void> = new EventEmitter<void>();
 
   constructor() { }
 
@@ -16,6 +17,10 @@ export class RicercaComponent implements OnInit {
 
   trovaMatch() { //funzione che emtte l'evento SezioneEvent alla root con parametro = false
     this.sezioneEvent.emit(false)
+  }
+
+  clean() {
+    this.sezioneEvent.emit(true);
   }
 
 }

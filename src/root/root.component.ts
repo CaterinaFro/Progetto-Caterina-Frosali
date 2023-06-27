@@ -24,8 +24,6 @@ export class RootComponent implements OnInit {
   ricerca() {
     this.view = 'ricerca';
     
-
-
   }
 
   inserimento() {
@@ -35,6 +33,12 @@ export class RootComponent implements OnInit {
 
   cambiaSez(x:boolean) {
     this.sez = x;
-
   }
+
+  handleCleanEvent(x:boolean) {
+    this.view = 'home'; 
+    this.sez = x; 
+  }
+
+ 
 }
