@@ -1,4 +1,8 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { DbLibriService } from '../db-libri.service';
+import { AjaxResponse } from 'rxjs/ajax';
+import {Libro} from '../libro';
+import {Archivio} from '../archivio';
 
 @Component({
   selector: 'app-inserimento',
