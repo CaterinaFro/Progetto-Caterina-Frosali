@@ -1,15 +1,17 @@
 <h3>
   BIBLIOTECA
 </h3>
-<div *ngIf="sez">
+<div>
   <button (click)="ricerca()">Ricerca</button>
   <button (click)="inserimento()">Inserimento</button> 
 </div>
 
-<app-ricerca *ngIf="view =='ricerca'" (sezioneEvent) = "cambiaSez($event)" (sezioneEvent) = "handleCleanEvent($event)">
+<app-ricerca *ngIf="view =='ricerca'" (sezioneEvent) = "CleanEvent($event)">
 </app-ricerca>
-<app-inserimento *ngIf="view=='inserimento'" (sezioneEvent) = "handleCleanEvent($event)">
+<app-inserimento *ngIf="view=='inserimento'" (sezioneEvent) = "CleanEvent($event)">
 </app-inserimento>
+
+
 
 
 

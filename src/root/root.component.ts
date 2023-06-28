@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { NoleggioComponent } from './noleggio/noleggio.component';
 import {RicercaComponent} from './ricerca/ricerca.component';
 import {InserimentoComponent} from './inserimento/inserimento.component';
 import {CommonModule} from '@angular/common'
@@ -11,14 +10,17 @@ import { AjaxResponse } from 'rxjs/ajax';
   templateUrl: './root.component.html',
   styleUrls: ['./root.component.css'],
   standalone: true,
-  imports: [RicercaComponent, CommonModule, InserimentoComponent],
+  imports: [RicercaComponent, 
+            CommonModule, 
+            InserimentoComponent],
   providers: [DbLibriService],
 })
 export class RootComponent implements OnInit {
   view: string = 'home';
   sez: boolean = true;
   
-  constructor(private dbls: DbLibriService) { }
+  constructor(private dbls: DbLibriService) { } //dichiarazione del servizio,
+                                                //si instanzia un parametro da passare nel momento della costruzione .
 
 
   ngOnInit() {
@@ -35,11 +37,8 @@ export class RootComponent implements OnInit {
 
   }
 
-  cambiaSez(x:boolean) {
-    this.sez = x;
-  }
 
-  handleCleanEvent(x:boolean) {
+  CleanEvent(x:boolean) {
     this.view = 'home'; 
     this.sez = x; 
   }
