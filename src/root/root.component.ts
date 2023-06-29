@@ -19,7 +19,7 @@ export class RootComponent implements OnInit {
   view: string = 'home';
   sez: boolean = true;
   
-  constructor(private dbls: DbLibriService) { } //dichiarazione del servizio,
+  constructor(private dbls: DbLibriService) { } //iniezione del servizio,
                                                 //si instanzia un parametro da passare nel momento della costruzione .
 
 
