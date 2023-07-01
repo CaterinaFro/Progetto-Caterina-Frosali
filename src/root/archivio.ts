@@ -1,7 +1,18 @@
-export class Archivio {
-  libri: string[];
+import { Libro } from "./libro";
 
-  constructor(libri: string[]) {
+export class Archivio {
+  libri: Array<Libro>;;
+
+  constructor(libri: Array<Libro>) {
     this.libri = libri;
   }
+
+  inserimento(libro: Libro){
+    this.libri.push(libro);
+  }
+
+  eliminazione(libro: Libro){
+    this.libri = this.libri.filter((element) => element.posizione != libro.posizione);
+  }
+
 }
