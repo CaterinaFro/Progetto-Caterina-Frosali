@@ -45,7 +45,8 @@ export class InserimentoComponent implements OnInit {
         var libriPresenti  = JSON.parse(x.response);
         // nuovo archivio con libri = libri presenti
         var archivioAttuale: Archivio =  new Archivio(libriPresenti);
-        archivioAttuale.libri.push(nuovoLibro)
+        //archivioAttuale.libri.push(nuovoLibro)
+        archivioAttuale.inserimento(nuovoLibro)
         //errore: string = "";
         //library.adapt(booklist);
         //controllo che all'interno della libreria non ci sia già un libro a quella posizione
