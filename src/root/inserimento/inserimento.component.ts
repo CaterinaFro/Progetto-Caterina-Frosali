@@ -14,7 +14,7 @@ import {CommonModule} from '@angular/common'
   standalone: true,
   providers: [DbLibriService]
 })
-export class InserimentoComponent implements OnInit {
+export class InserimentoComponent {
   @Output() sezioneEvent = new EventEmitter<boolean>();
   @Output() nuovoLibroEvent = new EventEmitter<Libro>(); 
   //errore : string = '';
@@ -22,8 +22,7 @@ export class InserimentoComponent implements OnInit {
 
   constructor(private dbls: DbLibriService) { } 
 
-  ngOnInit() {
-  }
+  //ngOnInit() {}
 
   clean() {
     this.sezioneEvent.emit(true);
@@ -42,7 +41,7 @@ export class InserimentoComponent implements OnInit {
     this.dbls.getData().subscribe({
       next: (x: AjaxResponse<any>) => {
         //array di documenti scaricato => stringa di tipo JSON 
-        var libriPresenti  = JSON.parse(x.response);
+        var libriPresenti  = JSON.parse(x.response) || [];
         // nuovo archivio con libri = libri presenti
         var archivioAttuale: Archivio =  new Archivio(libriPresenti);
         //archivioAttuale.libri.push(nuovoLibro)
@@ -63,9 +62,9 @@ export class InserimentoComponent implements OnInit {
           console.error('La richiesta ha generato un errore: ' + JSON.stringify(err))
   
         })
-      },
-        error: (err) =>
-          console.error('La richiesta ha generato un errore: ' + JSON.stringify(err))
+    },
+      error: (err) =>
+        console.error('La richiesta ha generato un errore: ' + JSON.stringify(err))
       });
   
 

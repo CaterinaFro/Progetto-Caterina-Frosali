@@ -1,7 +1,9 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
-import {CommonModule} from '@angular/common'
 import { DbLibriService } from '../db-libri.service';
 import { AjaxResponse } from 'rxjs/ajax';
+import {Libro} from '../libro';
+import {Archivio} from '../archivio';
+import {CommonModule} from '@angular/common'
 
 @Component({
   selector: 'app-ricerca',
@@ -12,7 +14,7 @@ import { AjaxResponse } from 'rxjs/ajax';
   standalone: true,
   providers: [DbLibriService]
 })
-export class RicercaComponent implements OnInit {
+export class RicercaComponent {
   @Output() sezioneEvent = new EventEmitter<boolean>();
   //@Output() cleanEvent: EventEmitter<void> = new EventEmitter<void>();
 
@@ -28,11 +30,26 @@ export class RicercaComponent implements OnInit {
 
 constructor(private dbls: DbLibriService) { }
 
-  ngOnInit() {
-  }
-
   clean() {
     this.sezioneEvent.emit(true);
   }
 
 }
+
+searchbook(searchedstring: string){
+  this.ls.getLibrary().subscribe({
+    next: (x: AjaxResponse<any>) => {
+      this.booksfound = [];
+      var booklist = JSON.parse(x.response);
+      this.library.adapt(booklist);
+      if(searchedstring!=""){
+        this.booksfound = this.library.books.filter((book) => (book.titolo.toLowerCase()+book.autore.toLocaleLowerCase()).includes(searchedstring.toLocaleLowerCase())); 
+        this.bf_count = this.booksfound.length;
+        this.msgFound(this.bf_count);
+      } else {
+        this.bf_message = "";
+      } },
+      error: (err) =>
+      console.error('La richiesta ha dato un errore: ' + JSON.stringify(err)),
+    });
+  }

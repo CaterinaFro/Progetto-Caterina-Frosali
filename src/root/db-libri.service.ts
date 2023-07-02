@@ -10,8 +10,7 @@ export class DbLibriService {
   apiKey: string = "97c4419b"
   URL: string  = 'https://eu-central-1.aws.data.mongodb-api.com/app/kvaas-giwjg/endpoint/';
 
-
-  public getData(): Observable<AjaxResponse<any>> {
+getData(): Observable<AjaxResponse<any>> {
     return ajax({
       method: 'GET',
       url: this.URL+'get?key='+this.apiKey,
@@ -19,7 +18,8 @@ export class DbLibriService {
     });
   }
 
-  public setData(archivio:Array<Libro>): Observable<AjaxResponse<any>> {
+setData(archivio:Array<Libro>): 
+Observable<AjaxResponse<any>> {
     return ajax({
       method: 'POST',
       url: this.URL+'set?key='+this.apiKey,

@@ -1,8 +1,7 @@
 import { Libro } from "./libro";
 
 export class Archivio {
-  libri: Array<Libro>;;
-
+  libri: Array<Libro>;
   constructor(libri: Array<Libro>) {
     this.libri = libri;
   }
