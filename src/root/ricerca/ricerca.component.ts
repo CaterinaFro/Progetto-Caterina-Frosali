@@ -52,9 +52,6 @@ constructor(private dbls: DbLibriService) { }
       var libriPresenti = JSON.parse(x.response);
       var archivioAttuale: Archivio =  new Archivio(libriPresenti);
       this.risultati = archivioAttuale.libri.filter((libro: Libro) => (libro.titolo+libro.autore).toLowerCase().includes(this.digitazione.toLocaleLowerCase()));
-      if (this.risultati.length == 0) {
-        this.vuoto = 'Nessun risultato trovato.';
-        return;}
 
     },
       error: (err) =>

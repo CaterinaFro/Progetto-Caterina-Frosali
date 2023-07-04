@@ -2,7 +2,6 @@
 <input (input) = "ricercalibro()" id="campo-ricerca" placeholder="Cerca un libro">
 
 <p *ngIf ='digitazione !== ""'>Libri trovati: {{risultati.length}}</p>
-<a *ngIf="errore">{{errore}}</a>
 <app-visualizzazione *ngIf ='risultati.length == 1'></app-visualizzazione>
 <br>
 <br>
