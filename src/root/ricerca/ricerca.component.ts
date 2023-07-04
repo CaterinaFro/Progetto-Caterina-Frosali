@@ -25,6 +25,7 @@ export class RicercaComponent implements OnInit{
   vuoto : string = "";
   digitazione : string = "";
   libroTrovato!: Libro;
+  risultato : boolean = false;
 
   
 constructor(private dbls: DbLibriService) { }
@@ -35,6 +36,7 @@ constructor(private dbls: DbLibriService) { }
   clean() {
     this.sezioneEvent.emit(true);
   }
+
 
   ricercalibro() {
     // controllo che se l'input è vuoto l'elenco libri venga svuotato per non mostrarli 
@@ -51,6 +53,7 @@ constructor(private dbls: DbLibriService) { }
       this.risultati = archivioAttuale.libri.filter((libro: Libro) => (libro.titolo+libro.autore).toLowerCase().includes(this.digitazione.toLocaleLowerCase()));
       if (this.risultati.length === 1) {
         this.libroTrovato = this.risultati[0];
+        this.risultato = true;
 
       }
 

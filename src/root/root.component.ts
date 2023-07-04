@@ -45,9 +45,7 @@ export class RootComponent implements OnInit {
     this.sez = x; 
   }
 
-  visualizzazione(y:string) {
-  this.view = y
-}
+
 
   
  

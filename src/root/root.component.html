@@ -5,7 +5,7 @@
   <button (click)="ricerca()">Ricerca</button>
   <button (click)="inserimento()">Inserimento</button> 
 </div>
-  <app-ricerca *ngIf="view =='ricerca' || risultati.length == 1 " (sezioneEvent) = "CleanEvent($event)">
+  <app-ricerca *ngIf="view =='ricerca'" (sezioneEvent) = "CleanEvent($event)">
   </app-ricerca>
   <app-inserimento *ngIf="view=='inserimento'" (sezioneEvent) = "CleanEvent($event)">
   </app-inserimento>
