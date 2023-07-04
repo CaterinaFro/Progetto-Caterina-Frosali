@@ -41,7 +41,7 @@ export class InserimentoComponent {
     this.dbls.getData().subscribe({
       next: (x: AjaxResponse<any>) => {
         //array di documenti scaricato => stringa di tipo JSON 
-        var libriPresenti  = JSON.parse(x.response) || [];
+        var libriPresenti  = JSON.parse(x.response) || [];    //PERCHEEEEEEE
         // nuovo archivio con libri = libri presenti
         var archivioAttuale: Archivio =  new Archivio(libriPresenti);
         //archivioAttuale.libri.push(nuovoLibro)

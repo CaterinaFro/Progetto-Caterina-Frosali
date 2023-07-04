@@ -16,40 +16,42 @@ import {CommonModule} from '@angular/common'
 })
 export class RicercaComponent {
   @Output() sezioneEvent = new EventEmitter<boolean>();
-  //@Output() cleanEvent: EventEmitter<void> = new EventEmitter<void>();
-
-  @Output() ricercaEvent = new EventEmitter<string>(); 
+  //@Output() ricercaEvent = new EventEmitter<string>(); 
   //metodo che emette al componente genitore (root) la stringa immessa nel campo di ricerca
-  ricercalibro() {
-    var cerca: HTMLInputElement = document.getElementById('campo-ricerca') as HTMLInputElement;
-    var searchstring: string = cerca.value;
-    this.ricercaEvent.emit(searchstring);
-
-}
-
-
+  risultati : Array<Libro> = [];
+  vuoto : string = "";
+  
 constructor(private dbls: DbLibriService) { }
 
   clean() {
     this.sezioneEvent.emit(true);
   }
 
+
+  ricercalibro() {
+    // controllo che se l'input è vuoto l'elenco libri venga svuotato per non mostrarli 
+    var cerca: HTMLInputElement = document.getElementById('campo-ricerca') as HTMLInputElement;
+    let digitazione = cerca.value
+    if (digitazione == "") {
+      this.risultati = [];
+      return;}
+    
+    this.dbls.getData().subscribe({
+      next: (x: AjaxResponse<any>) => {
+      var libriPresenti = JSON.parse(x.response);
+      var archivioAttuale: Archivio =  new Archivio(libriPresenti);
+      this.risultati = archivioAttuale.libri.filter((libro: Libro) => (libro.titolo+libro.autore).toLowerCase().includes(digitazione.toLocaleLowerCase()));
+      if (this.risultati.length == 0) {
+        this.vuoto = 'Nessun risultato trovato.';
+        return;}
+
+    },
+      error: (err) =>
+        console.error('Observer got an error: ' + JSON.stringify(err))
+  
+  });
+  }
+
 }
 
-searchbook(searchedstring: string){
-  this.ls.getLibrary().subscribe({
-    next: (x: AjaxResponse<any>) => {
-      this.booksfound = [];
-      var booklist = JSON.parse(x.response);
-      this.library.adapt(booklist);
-      if(searchedstring!=""){
-        this.booksfound = this.library.books.filter((book) => (book.titolo.toLowerCase()+book.autore.toLocaleLowerCase()).includes(searchedstring.toLocaleLowerCase())); 
-        this.bf_count = this.booksfound.length;
-        this.msgFound(this.bf_count);
-      } else {
-        this.bf_message = "";
-      } },
-      error: (err) =>
-      console.error('La richiesta ha dato un errore: ' + JSON.stringify(err)),
-    });
-  }
+

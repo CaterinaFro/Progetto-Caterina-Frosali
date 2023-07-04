@@ -30,6 +30,7 @@ export class RootComponent implements OnInit {
   ricerca() {
     this.view = 'ricerca';
     
+    
   }
 
   inserimento() {
