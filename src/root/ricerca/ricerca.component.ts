@@ -17,9 +17,10 @@ import {EliminaComponent} from './elimina/elimina.component';
   standalone: true,
   providers: [DbLibriService]
 })
-export class RicercaComponent {
+export class RicercaComponent implements OnInit{
   @Output() sezioneEvent = new EventEmitter<boolean>();
-  @Output() cambioview= new EventEmitter<string>();
+  @Input() libroTrovato : Libro;
+  //@Output() cambioview= new EventEmitter<string>();
   //@Output() ricercaEvent = new EventEmitter<string>(); 
   //metodo che emette al componente genitore (root) la stringa immessa nel campo di ricerca
   risultati : Array<Libro> = [];
@@ -29,15 +30,12 @@ export class RicercaComponent {
   
 constructor(private dbls: DbLibriService) { }
 
+  ngOnInit() {
+  }
+
   clean() {
     this.sezioneEvent.emit(true);
   }
-
-  unico_risultato () {
-    this.cambioview.emit("home");
-
-  }
-
 
   ricercalibro() {
     // controllo che se l'input è vuoto l'elenco libri venga svuotato per non mostrarli 
