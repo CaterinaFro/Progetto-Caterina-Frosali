@@ -1,3 +1,6 @@
-<div >
-  ID {{ Libro.posizione }} - Titolo: {{ documento.titolo }} - Autore: {{ documento.autore }} - Prestato a: {{ documento.noleggiatore}}
+
+<div *ngIf="libroTrovato">
+  <h3>{{ libroTrovato.titolo }}</h3>
+  <p>{{ libroTrovato.autore }}</p>
+  <!-- Other properties -->
 </div>

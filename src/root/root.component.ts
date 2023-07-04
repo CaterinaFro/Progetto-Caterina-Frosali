@@ -4,6 +4,8 @@ import {InserimentoComponent} from './inserimento/inserimento.component';
 import {CommonModule} from '@angular/common'
 import { DbLibriService } from './db-libri.service';
 import { AjaxResponse } from 'rxjs/ajax';
+import {Libro} from './libro';
+import {Archivio} from './archivio';
 
 @Component({
   selector: 'app-root',
@@ -18,6 +20,7 @@ import { AjaxResponse } from 'rxjs/ajax';
 export class RootComponent implements OnInit {
   view: string = 'home';
   sez: boolean = true;
+  risultati!: Array<Libro>;
   
   constructor(private dbls: DbLibriService) { } //iniezione del servizio,
                                                 //si instanzia un parametro da passare nel momento della costruzione .
@@ -42,10 +45,11 @@ export class RootComponent implements OnInit {
     this.sez = x; 
   }
 
+  visualizzazione(y:string) {
+  this.view = y
+}
+
   
  
 }
 
-//visualizzazione(y:string) {
-  //this.view = y
-//}

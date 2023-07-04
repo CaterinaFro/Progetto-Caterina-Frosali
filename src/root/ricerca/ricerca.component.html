@@ -2,7 +2,7 @@
 <input (input) = "ricercalibro()" id="campo-ricerca" placeholder="Cerca un libro">
 
 <p *ngIf ='digitazione !== ""'>Libri trovati: {{risultati.length}}</p>
-<app-visualizzazione *ngIf ='risultati.length == 1'></app-visualizzazione>
+<app-visualizzazione [libroTrovato]="libroTrovato" *ngIf="risultati.length == 1"> </app-visualizzazione>
 <br>
 <br>
 <br>

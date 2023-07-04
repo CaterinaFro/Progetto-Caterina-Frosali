@@ -19,13 +19,12 @@ import {EliminaComponent} from './elimina/elimina.component';
 })
 export class RicercaComponent implements OnInit{
   @Output() sezioneEvent = new EventEmitter<boolean>();
-  @Input() libroTrovato : Libro;
-  //@Output() cambioview= new EventEmitter<string>();
-  //@Output() ricercaEvent = new EventEmitter<string>(); 
-  //metodo che emette al componente genitore (root) la stringa immessa nel campo di ricerca
+  //@Output() libroEvent = new EventEmitter<Array<Libro>>();
+
   risultati : Array<Libro> = [];
   vuoto : string = "";
   digitazione : string = "";
+  libroTrovato!: Libro;
 
   
 constructor(private dbls: DbLibriService) { }
@@ -50,6 +49,10 @@ constructor(private dbls: DbLibriService) { }
       var libriPresenti = JSON.parse(x.response);
       var archivioAttuale: Archivio =  new Archivio(libriPresenti);
       this.risultati = archivioAttuale.libri.filter((libro: Libro) => (libro.titolo+libro.autore).toLowerCase().includes(this.digitazione.toLocaleLowerCase()));
+      if (this.risultati.length === 1) {
+        this.libroTrovato = this.risultati[0];
+
+      }
 
     },
       error: (err) =>
