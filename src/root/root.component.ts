@@ -24,12 +24,11 @@ export class RootComponent implements OnInit {
 
 
   ngOnInit() {
-
   }
 
   ricerca() {
     this.view = 'ricerca';
-    
+
     
   }
 
@@ -37,7 +36,6 @@ export class RootComponent implements OnInit {
     this.view = 'inserimento';
 
   }
-
 
   CleanEvent(x:boolean) {
     this.view = 'home'; 

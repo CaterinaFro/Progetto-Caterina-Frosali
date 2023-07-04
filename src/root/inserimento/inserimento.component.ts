@@ -74,3 +74,6 @@ export class InserimentoComponent {
 
     }
 }
+
+
+//METTERE CONDIZIONI X NON LASCIARE CAMPI VUOTI
