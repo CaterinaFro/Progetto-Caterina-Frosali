@@ -24,7 +24,7 @@ export class RicercaComponent implements OnInit{
   risultati : Array<Libro> = [];
   vuoto : string = "";
   digitazione : string = "";
-  libroTrovato!: Libro;
+  libroTrovato: Libro = new Libro("", "", "", true);
   risultato : boolean = false;
 
   

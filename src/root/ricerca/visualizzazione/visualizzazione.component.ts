@@ -16,7 +16,7 @@ import {CommonModule} from '@angular/common'
 })
 export class VisualizzazioneComponent implements OnInit {
   @Output() sezioneEvent = new EventEmitter<boolean>();
-  @Input() libroTrovato!: Libro; // FUNZIONA MA BO
+  @Input() libroTrovato: Libro = new Libro("", "", "", true); //true???
 
   constructor(private dbls: DbLibriService) { }
 
